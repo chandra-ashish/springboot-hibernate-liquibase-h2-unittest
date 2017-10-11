@@ -1,6 +1,9 @@
 package com.hibernate.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author wanli zhou
@@ -8,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "county")
-public class County {
+public class County implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,6 +20,7 @@ public class County {
     private String code;
     @ManyToOne
     @JoinColumn(name = "city_id")
+    @JsonBackReference
     private City city;
 
     public Integer getId() {

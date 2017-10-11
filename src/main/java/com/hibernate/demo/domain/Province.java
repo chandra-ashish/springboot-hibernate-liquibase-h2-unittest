@@ -1,6 +1,9 @@
 package com.hibernate.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,8 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "province")
-public class Province {
-
+public class Province implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,6 +20,7 @@ public class Province {
     private String code;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "province")
+    @JsonManagedReference
     List<City> cities;
 
 

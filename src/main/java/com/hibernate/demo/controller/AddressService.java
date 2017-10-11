@@ -4,7 +4,8 @@ import com.hibernate.demo.domain.City;
 import com.hibernate.demo.domain.County;
 import com.hibernate.demo.domain.Province;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
+import javax.xml.bind.Marshaller;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,15 +14,18 @@ import javax.persistence.PersistenceContext;
  * @created 2017-10-09 11:11 PM.
  */
 @Service
+@Transactional
 public class AddressService {
 
     @PersistenceContext
     private EntityManager em;
 
     public Province getProvinceById(Integer id) {
-        return em.createQuery("SELECT p FROM Province p WHERE p.id = :id", Province.class)
+
+        Province p = em.createQuery("SELECT p FROM Province p WHERE p.id = :id", Province.class)
                 .setParameter("id", id)
                 .getResultList().stream().findFirst().orElse(null);
+        return p;
     }
 
     public void setEm(EntityManager em) {
@@ -29,22 +33,24 @@ public class AddressService {
     }
 
     public Province getProvinceByName(String name) {
-        return em.createQuery("SELECT p FROM Province p WHERE p.name like :name", Province.class)
+        Province p  = em.createQuery("SELECT p FROM Province p WHERE p.name like :name", Province.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultList().stream().findFirst().orElse(null);
+        return p;
     }
 
     public City getCityByName(String name) {
-        return em.createQuery("SELECT c FROM City c WHERE c.name like :name", City.class)
+        City c =  em.createQuery("SELECT c FROM City c WHERE c.name like :name", City.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultList().stream().findFirst().orElse(null);
+        return c;
 
     }
 
     public County getCountyByName(String name) {
-        return em.createQuery("SELECT c FROM County c WHERE c.name like :name", County.class)
+        County c =  em.createQuery("SELECT c FROM County c WHERE c.name like :name", County.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultList().stream().findFirst().orElse(null);
-
+        return c;
     }
 }

@@ -1,6 +1,10 @@
 package com.hibernate.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "city")
-public class City {
+public class City implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +22,14 @@ public class City {
     private String code;
     @ManyToOne
     @JoinColumn(name = "province_id")
+    @JsonBackReference
     private Province province;
 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "city")
+    @JsonManagedReference
     List<County> counties;
+
 
     public List<County> getCounties() {
         return counties;

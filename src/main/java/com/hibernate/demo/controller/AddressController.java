@@ -1,5 +1,8 @@
 package com.hibernate.demo.controller;
 
+import com.hibernate.demo.domain.City;
+import com.hibernate.demo.domain.County;
+import com.hibernate.demo.domain.Province;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,20 +28,28 @@ public class AddressController {
 
     @GetMapping("province/id/{id}")
     public ResponseEntity getProvinceById(@PathVariable("id") Integer id){
-        return ResponseEntity.ok(addressService.getProvinceById(id));
+        Province pi = addressService.getProvinceById(id);
+        System.out.println(pi);
+        return ResponseEntity.ok(pi);
     }
     @GetMapping("province/{name}")
     public ResponseEntity getProvinceByName(@PathVariable("name") String name){
-        return ResponseEntity.ok(addressService.getProvinceByName(name));
+        Province pi = addressService.getProvinceByName(name);
+        System.out.println(pi);
+        return ResponseEntity.ok(pi);
     }
 
     @GetMapping("city/{name}")
     public ResponseEntity getCityByName(@PathVariable("name") String name){
-        return ResponseEntity.ok(addressService.getCityByName(name));
+        City ci = addressService.getCityByName(name);
+        System.out.println(ci);
+        return ResponseEntity.ok(ci);
     }
 
     @GetMapping("county/{name}")
     public ResponseEntity getCountyByName(@PathVariable("name") String name){
-        return ResponseEntity.ok(addressService.getCountyByName(name));
+        County ci = addressService.getCountyByName(name);
+        System.out.println(ci);
+        return ResponseEntity.ok(ci);
     }
 }
