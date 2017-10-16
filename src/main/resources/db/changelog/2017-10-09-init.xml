@@ -5,7 +5,7 @@
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-	<changeSet id="utf8" author="whoknows">
+	<changeSet id="utf8" author="whoknows" dbms="mysql">
 		<sql>
 			ALTER DATABASE springboot_hibernate_demo CHARACTER SET utf8 COLLATE utf8_general_ci;
 		</sql>
@@ -13,7 +13,7 @@
 	<changeSet author="wanli zhou" id="1">
 		<createTable tableName="province">
 			<column autoIncrement="true" name="id" type="bigint">
-				<constraints nullable="false" primaryKey="true" primaryKeyName="chemical_structure_pk"/>
+				<constraints nullable="false" primaryKey="true" primaryKeyName="province_id_pk"/>
 			</column>
 			<column name="code" type="varchar(6)">
 				<constraints nullable="true"/>
@@ -27,7 +27,7 @@
 	<changeSet author="wanli zhou" id="2">
 		<createTable tableName="city">
 			<column autoIncrement="true" name="id" type="bigint">
-				<constraints nullable="false" primaryKey="true" primaryKeyName="chemical_structure_pk"/>
+				<constraints nullable="false" primaryKey="true" primaryKeyName="city_id_pk"/>
 			</column>
 			<column name="code" type="varchar(15)">
 				<constraints nullable="true"/>
@@ -44,7 +44,7 @@
 	<changeSet author="wanli zhou" id="3">
 		<createTable tableName="county">
 			<column autoIncrement="true" name="id" type="bigint">
-				<constraints nullable="false" primaryKey="true" primaryKeyName="chemical_structure_pk"/>
+				<constraints nullable="false" primaryKey="true" primaryKeyName="county_id_pk"/>
 			</column>
 			<column name="code" type="varchar(15)">
 				<constraints nullable="true"/>
