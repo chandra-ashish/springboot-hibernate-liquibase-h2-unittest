@@ -28,7 +28,7 @@ liquibase:
 
 logging:
     level:
-        com.labnetwork: DEBUG
+        com.hibernate.demo: DEBUG
         org.hibernate.SQL: DEBUG
 
                 
