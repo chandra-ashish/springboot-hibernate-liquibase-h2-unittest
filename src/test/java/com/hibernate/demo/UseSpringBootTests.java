@@ -17,15 +17,15 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@ActiveProfiles("test")
 public class UseSpringBootTests {
 
 	@PersistenceContext
 	private EntityManager em;
 
-	@Test
+//	@Test
 	@Transactional
 	public void contextLoads() {
 
