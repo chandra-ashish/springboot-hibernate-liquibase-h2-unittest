@@ -20,8 +20,8 @@ spring:
             format_sql: true
 
 
-liquibase:
-    changeLog: "classpath:db/changelog/master.xml"
+#liquibase:
+#    changeLog: "classpath:db/changelog/master.xml"
 
 
 logging:

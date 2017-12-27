@@ -3,6 +3,7 @@ package com.hibernate.springtest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hibernate.demo.domain.City;
 import com.hibernate.demo.domain.Province;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,13 +23,14 @@ import java.util.List;
  * @author wanli zhou
  * @created 2017-10-09 2:23 PM.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2DsConfi.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = H2DsConfi.class)
 public class UseSpringTest {
 
     @PersistenceContext
     private EntityManager em;
     @Transactional
+    @Ignore
     @Test
     public void createCSTest(){
         List<City> citis = new ArrayList<>();

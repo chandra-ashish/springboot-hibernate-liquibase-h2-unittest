@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @created 2017-12-06 10:32 AM.
  */
 @Controller
-@RequestMapping(path = "/multipleThread1/", consumes = "application/json", produces = "application/json")
+@RequestMapping(path = "/multipleThread2/", consumes = "application/json", produces = "application/json")
 public class TestMultipleThreadController2 {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private TestMultipleThreadService1 testMultipleThreadService1;
+    private TestMultipleThreadService2 testMultipleThreadService2;
 
     @GetMapping("/{name}")
     public ResponseEntity multipleThread(@PathVariable("name") String name){
-        log.info("===>{}" , name);
-        testMultipleThreadService1.save(name);
+        log.info("|===>{}" , name);
+        testMultipleThreadService2.save(name);
         return ResponseEntity.ok("");
     }
 

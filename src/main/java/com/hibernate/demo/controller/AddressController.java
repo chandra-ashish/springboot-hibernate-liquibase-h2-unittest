@@ -4,6 +4,7 @@ import com.hibernate.demo.domain.City;
 import com.hibernate.demo.domain.County;
 import com.hibernate.demo.domain.Province;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +19,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/address/", consumes = "application/json", produces = "application/json")
 public class AddressController {
 
+
     private final AddressService addressService;
+
+    @Value("${spring.datasource.password}")
+    private String pwd;
 
     @Autowired
     public AddressController(AddressService addressService){
         this.addressService = addressService;
     }
 
+    @GetMapping("pwd")
+    public ResponseEntity getPwd(){
+        return ResponseEntity.ok(pwd);
+    }
 
     @GetMapping("province/id/{id}")
     public ResponseEntity getProvinceById(@PathVariable("id") Integer id){

@@ -27,18 +27,19 @@ public class TestMultipleThreadService2 {
     private EntityManager em;
 
     @Autowired
-    private TestMultipleThreadSaveService1 testMultipleThreadSaveService1;
+    private TestMultipleThreadSaveService2 TestMultipleThreadSaveService2;
     public void save(String name){
         log.info("===> thread id is : {}", Thread.currentThread().getId());
 
         Province province = null;
         try {
-            province = testMultipleThreadSaveService1.save(name);
+            province = TestMultipleThreadSaveService2.save(name);
+            log.info("=||||=====>>>>>{}", em.createQuery("select p FROM Province p WHERE p.name = :name", Province.class).setParameter("name", name).getSingleResult().getName());
         }catch (PersistenceException e){
             if(e.getCause() instanceof ConstraintViolationException){
                 log.error("重复--->{}", e);
                 log.info("======>>>>>{}", em.createQuery("select p FROM Province p WHERE p.name = :name", Province.class).setParameter("name", name).getSingleResult());
-                province = testMultipleThreadSaveService1.save(name + "-");
+                province = TestMultipleThreadSaveService2.save(name + "-");
             }
         }
 

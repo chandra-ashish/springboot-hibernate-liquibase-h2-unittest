@@ -1,7 +1,6 @@
 package com.hibernate.demo.controller;
 
 import com.hibernate.demo.domain.Province;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -31,13 +30,7 @@ public class TestMultipleThreadService {
         Province province = new Province();
         province.setName(name);
         province.setCode("C-" + name);
-        try {
-            em.persist(province);
-        }catch (ConstraintViolationException e){
-            log.error("重复--->{}", e);
-            province.setName(name + "-");
-            em.persist(province);
-        }
+        em.persist(province);
         em.flush();
         log.info("===> have save province: {}", province.getId());
         try {

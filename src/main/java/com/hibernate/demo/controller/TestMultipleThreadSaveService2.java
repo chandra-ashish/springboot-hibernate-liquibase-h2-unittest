@@ -4,8 +4,6 @@ import com.hibernate.demo.domain.Province;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +13,7 @@ import javax.persistence.PersistenceContext;
  * @created 2017-12-08 7:03 PM.
  */
 @Component
-@Transactional(propagation = Propagation.REQUIRES_NEW)
-public class TestMultipleThreadSaveService1 {
+public class TestMultipleThreadSaveService2 {
 
     @PersistenceContext
     private EntityManager em;

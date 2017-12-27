@@ -1,6 +1,5 @@
 package com.hibernate.demo.controller;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @created 2017-12-06 10:32 AM.
  */
 @Controller
-@RequestMapping(path = "/multipleThread/", consumes = "application/json", produces = "application/json")
+@RequestMapping(path = "/multipleThread1/", consumes = "application/json", produces = "application/json")
 public class TestMultipleThreadController1 {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private TestMultipleThreadService testMultipleThreadService;
+    private TestMultipleThreadService1 testMultipleThreadService1;
 
     @GetMapping("/{name}")
     public ResponseEntity multipleThread(@PathVariable("name") String name){
         log.info("===>{}" , name);
-        try {
-            testMultipleThreadService.save(name);
-        }catch (Exception e){
-            log.error("{} 重复索引异常, {}", name, e);
-            log.info("====>{}", e.getCause() instanceof ConstraintViolationException);
-            testMultipleThreadService.save(name + "-");
-        }
+
+        testMultipleThreadService1.save(name);
         return ResponseEntity.ok("");
     }
 
